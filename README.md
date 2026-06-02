@@ -42,6 +42,8 @@ Classroom Playlist
 |Track Title|Artist|Notes|
 |-----------|------|-----|
 |Smooth Criminal|Luca Stricagnoli|Michael Jackson cover|
+|You Go To My Head|Louis Armstrong and Oscar Peterson||
+
 
 
 
