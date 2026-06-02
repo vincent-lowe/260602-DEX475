@@ -47,6 +47,8 @@ Classroom Playlist
 |-----------|------|-----|
 |Smooth Criminal|Luca Stricagnoli|Michael Jackson cover|
 |You Go To My Head|Louis Armstrong and Oscar Peterson||
+|The Hitter|Mark Erelli|Mark wrote this for his son|
+
 
 
 
