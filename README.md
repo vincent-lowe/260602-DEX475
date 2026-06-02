@@ -22,6 +22,8 @@ Class System Setup (pre-class): https://trailhead.salesforce.com/help?article=Co
 
 Advanced REST Client: https://github.com/advanced-rest-client/arc-electron/releases/tag/v17.0.9
 
+Model API: https://jsonplaceholder.typicode.com/users
+
 Related Links
 -------------------------------------------------------------------------------------------------------------------
 
