@@ -1,22 +1,20 @@
-#### DEX475 - API Design - YYMMDD - TZ
+#### DEX475 - API Design - 060602 - PDT
 
-Instructor Name: XXXX YYYY
+Instructor Name: Vincent Lowe
 
-email: instructor@salesforce.com
+email: vlowe@salesforce.com
 
 Course Specific Details
 -------------------------------------------------------------------------------------------------------------------
 Trailhead Academy:			https://trailheadacademy.salesforce.com/my-learning
 
-Attendance Code:			XXXXXX
-
 Salesforce Mimeo:		     	https://salesforce.mimeo.digital/MuleSoft
 
-eBook Redemption Key:			USZZZZZZZZZZ
+eBook Redemption Key:			USVATRGQQU1G
 
 Survey Link:			https://www.research.net/r/trailheadacademy
 
-Survey ID:				XXXXXXX
+Survey ID:				TASM-2138965
 
 Pre-class Setup
 -------------------------------------------------------------------------------------------------------------------
@@ -37,13 +35,12 @@ Two Bit History takedown:
 https://twobithistory.org/2020/06/28/rest.html
 
 
-
-
-
-
-
-
 Classroom Playlist
 -------------------------------------------------------------------------------------------------------------------
 |Track Title|Artist|Notes|
 |-----------|------|-----|
+|Smooth Criminal|Luca Stricagnoli|Michael Jackson cover|
+
+
+
+
