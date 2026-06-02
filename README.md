@@ -18,6 +18,10 @@ Survey ID:				TASM-2138965
 
 Pre-class Setup
 -------------------------------------------------------------------------------------------------------------------
+VM login link: https://use.cloudshare.com/Class/zl7ah
+
+Passphrase: Gordon the Witty Unicorn
+
 Class System Setup (pre-class): https://trailhead.salesforce.com/help?article=Computer-Setup-Guide-for-MuleSoft-Expert-Led-Classes#DEX475
 
 Advanced REST Client: https://github.com/advanced-rest-client/arc-electron/releases/tag/v17.0.9
