@@ -52,6 +52,7 @@ Classroom Playlist
 |This Old Town|Nanci Griffith|Other Voices, Other Rooms|
 |Dos Oruguitas|Steven Joseph|Instrumental cover from the movie Encanto|
 |Sixteen Tons|Geoff Castellucci||
+|Here We Go Again|Ray Charles and Norah Jones||
 
 
 
