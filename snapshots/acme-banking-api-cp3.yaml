@@ -1,0 +1,434 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: ACME Banking API
+
+components:
+  schemas:
+    CustomErrorMessage:
+      $ref: 'datatypes/CustomErrorMessage.yaml#/CustomErrorMessage'
+    Customer:
+      $ref: 'datatypes/Customer.yaml#/Customer'
+    Account:
+      $ref: 'datatypes/Account.yaml#/Account'
+    Transaction:
+      $ref: 'datatypes/Transaction.yaml#/Transaction'
+
+paths: 
+  /customers: 
+    get: 
+      description: Retrieve a list of customers
+      summary: Get Customers
+      parameters:
+        - in: header
+          name: Accept
+          required: false
+          schema:
+            type: string
+            example: application/json
+      responses:
+        '200':
+          description: A list of customers
+          headers:
+            Cache-Control:
+              description: The content type of the response
+              schema:
+                type: string
+              required: true
+            Expires:
+              description: lifetime of the response by datetime
+              schema:
+                type: string
+                example: '2024-12-31T23:59:59Z'
+              required: true
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+        '404':
+          description: No customers found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+    post: 
+      description: Create a new customer
+      summary: Create Customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '201':
+          description: Customer created successfully
+          headers:
+            Location:
+              description: URL of the newly created customer
+              schema:
+                type: string
+                example: 'https://api.acme.com/customers/123'          
+                required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseMessage:
+                    type: string
+                    example: Customer created successfully
+                  responseCode:
+                    type: string
+                    example: SUCCESS
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+
+  /customers/{customerId}: 
+    parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+    get: 
+      description: Retrieve a specific customer by ID
+      summary: Get Customer by ID
+      responses:
+        '200':
+          description: Customer details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '404':
+          description: Customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+    put: 
+      description: Update an existing customer
+      summary: Update Customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '204':
+          description: Customer updated successfully
+          headers:
+            Location:
+              description: URL of the updated customer
+              schema:
+                type: string
+                example: 'https://api.acme.com/customers/123'          
+                required: true
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+    delete: 
+      description: Delete a customer by ID
+      summary: Delete Customer
+      responses:
+        '204':
+          description: Customer deleted successfully
+        '404':
+          description: Customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+
+  /customers/{customerId}/accounts: 
+    parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      description: Retrieve a list of accounts for a specific customer
+      summary: Get Accounts for Customer
+      responses:
+        '200':
+          description: A list of accounts for the customer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+        '404':
+          description: Customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+
+  /accounts: 
+    get: 
+      description: Retrieve a list of all accounts
+      summary: Get Accounts
+      responses:
+        '200':
+          description: A list of accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+              example:
+                message: No accounts found
+                statusCode: FAILED                
+    post: 
+      description: Create a new account
+      summary: Create Account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '201':
+          description: Account created successfully
+          headers:
+            Location:
+              description: URL of the newly created account
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseMessage:
+                    type: string
+                    example: Account created successfully
+                  responseCode:
+                    type: string
+                    example: SUCCESS
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+
+  /accounts/{accountId}: 
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+    get: 
+      description: Retrieve a specific account by ID
+      summary: Get Account by ID
+      responses:
+        '200':
+          description: Account details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+        '404':
+          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+    delete: 
+      description: Delete a account by ID
+      summary: Delete Account
+      responses:
+        '204':
+          description: Account deleted successfully
+        '404':
+          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+    put: 
+      description: Update an existing customer
+      summary: Update Customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '204':
+          description: Customer updated successfully
+          headers:
+            Location:
+              description: URL of the updated customer
+              schema:
+                type: string
+                example: 'https://api.acme.com/customers/123'          
+                required: true
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+
+  /accounts/{accountId}/transactions: 
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+    get: 
+      description: Retrieve a list of transactions for a specific account
+      summary: Get Transactions for Account
+      responses:
+        '200':
+          description: A list of transactions for the account
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+        '404':
+          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+
+  /transactions: 
+    post: 
+      description: Create a new transaction
+      summary: Create Transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        '201':
+          description: Transaction created successfully
+          headers:
+            Location:
+              description: URL of the newly created transaction
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+
+  /transactions/{transactionId}: 
+    parameters:
+      - name: transactionId
+        in: path
+        required: true
+        schema:
+          type: string
+    get: 
+      description: Retrieve a specific transaction by ID
+      summary: Get Transaction by ID
+      responses:
+        '200':
+          description: Transaction details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '404':
+          description: Transaction not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomErrorMessage'
