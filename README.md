@@ -50,6 +50,8 @@ Classroom Playlist
 |The Hitter|Mark Erelli|Mark wrote this for his son|
 |Ain't Misbehavin'|Leon Redbone||
 |This Old Town|Nanci Griffith|Other Voices, Other Rooms|
+|Dos Oruguitas|Steven Joseph|Instrumental cover from the movie Encanto|
+
 
 
 
