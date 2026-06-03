@@ -53,7 +53,8 @@ Classroom Playlist
 |Dos Oruguitas|Steven Joseph|Instrumental cover from the movie Encanto|
 |Sixteen Tons|Geoff Castellucci||
 |Here We Go Again|Ray Charles and Norah Jones||
-
+|Midnight Train to Georgia|Gladys Knight and the Pips||
+|The Streetbeater|Quincy Jones||
 
 
 
